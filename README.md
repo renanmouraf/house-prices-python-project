@@ -137,10 +137,6 @@ coverage run -m pytest tests
 coverage report -m
 ```
 
-localhost 5482
-public
-admin
-admin
 
 # Packages for data analisys
 
