@@ -1,0 +1,85 @@
+# You need to install the RestClient plugin on VSCode to use this file
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+@localhost = http://127.0.0.1:8000
+
+# Set host
+@host = {{localhost}}
+
+###/============= Check Status  ============= /
+
+GET {{host}}/api/status HTTP/1.1
+
+###/============= Check Status  ============= /
+curl -X 'POST' \
+  'http://localhost:8000/api/security/token' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=&username=user1&password=pass1&scope=&client_id=&client_secret='
+  
+###/============= Login and get token ============= /
+
+POST {{host}}/api/security/token HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="username"
+
+user1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="password";
+
+pass1
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###/============= Validate token ============= /
+
+POST {{host}}/api/security/token/validate HTTP/1.1
+content-type: application/json
+
+{"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJzdWIiOiJ1c2VyMSIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTY0Nzg4NjY4MH0.D41gLX8pFHAHY6esN5h_Wnwlrokb6Mg7kSmuKpGDvqA"}
+
+###/============= Predict ============= /
+
+POST {{host}}/api/predict HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJzdWIiOiJ1c2VyMSIsInJvbGUiOiJBRE1JTiIsImV4cCI6MTY0Nzg4NjY4MH0.D41gLX8pFHAHY6esN5h_Wnwlrokb6Mg7kSmuKpGDvqA
+
+{
+"MSSubClass": 20, "MSZoning": "RL", 
+"LotArea": 7922, "Street": "Pave", 
+"LotShape": "Reg", "LandContour": "Lvl", 
+"Utilities": "AllPub", "LotConfig": "Inside", 
+"LandSlope": "Gtl", "Neighborhood": "NAmes", 
+"Condition1": "Norm", "Condition2": "Norm", 
+"BldgType": "1Fam", "HouseStyle": "1Story", 
+"OverallQual": 5, "OverallCond": 7, 
+"YearBuilt": 1953, "YearRemodAdd": 2007, 
+"RoofStyle": "Gable", "RoofMatl": "CompShg", 
+"Exterior1st": "VinylSd", "Exterior2nd": "VinylSd", 
+"MasVnrType": "None", "ExterQual": 3,
+"ExterCond": 4, "Foundation": "CBlock", 
+"BsmtQual": 3, "BsmtCond": 3, 
+"BsmtExposure": "No", "BsmtFinType1": "GLQ", 
+"BsmtFinSF1": 731, "BsmtFinType2": "Unf", 
+"BsmtFinSF2": 0, "BsmtUnfSF": 326, 
+"TotalBsmtSF": 1057, "Heating": "GasA", 
+"HeatingQC": 3, "CentralAir": "Y", 
+"Electrical": "SBrkr", "1stFlrSF": 1057, 
+"2ndFlrSF": 0, "LowQualFinSF": 0, 
+"GrLivArea": 1057, "BsmtFullBath": 1, 
+"BsmtHalfBath": 0, "FullBath": 1, 
+"HalfBath": 0, "BedroomAbvGr": 3, 
+"KitchenAbvGr": 1, "KitchenQual": 4, 
+"TotRmsAbvGrd": 5, "Functional": "Typ", 
+"Fireplaces": 0, "FireplaceQu": 0, 
+"GarageType": "Detchd", "GarageFinish": "Unf",
+"GarageCars": 1, "GarageArea": 246, 
+"GarageQual": 3, "GarageCond": 3, 
+"PavedDrive": "Y", "WoodDeckSF": 0, 
+"OpenPorchSF": 52, "EnclosedPorch": 0, 
+"3SsnPorch": 0, "ScreenPorch": 0, 
+"PoolArea": 0, "MiscVal": 0, "MoSold": 1,
+"YrSold": 2010, "SaleType": "WD", 
+"SaleCondition": "Abnorml"
+}
+
