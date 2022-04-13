@@ -142,8 +142,9 @@ public
 admin
 admin
 
-# Pacotes para Análise de Dados
+# Packages for data analisys
 
+```
 pip install jupyter==1.0.0
 pip install pandas==1.4.1
 pip install seaborn==0.11.2
@@ -151,8 +152,9 @@ pip install scikit-learn==0.24.1
 pip install requests==2.27.1
 pip install fastapi==0.74.1
 pip install uvicorn==0.13.3
+```
 
-# Pacotes para API
+# Packages for the API
 
 ```
 pip install fastapi==0.74.1
@@ -172,7 +174,6 @@ pip install requests==2.27.1
 
 # Docker
 
-Trocar DB_HOST no properties.py para o IP no ifconfig (ex.: 10.0.2.15):
 
 ```
 $ docker build -t house .
